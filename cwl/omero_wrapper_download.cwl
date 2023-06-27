@@ -53,6 +53,7 @@ inputs:
   id: environ_PATH
   type: string?
 label: omero_wrapper_download
+outputs: []
 requirements:
 - class: DockerRequirement
   dockerPull: estorrs/omero-wrapper:0.0.1
