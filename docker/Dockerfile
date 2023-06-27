@@ -12,7 +12,10 @@ RUN conda env create --file /omero-wrapper/env.yaml
 
 COPY . /omero-wrapper
 
+RUN mkdir -p /tmp
 ENV PATH="/miniconda/envs/omero-wrapper/bin:$PATH"
+ENV OMERO_TMPDIR="/tmp"
+
 RUN pip install /omero-wrapper
 
 CMD /bin/bash

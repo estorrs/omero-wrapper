@@ -47,6 +47,9 @@ inputs:
 - default: /miniconda/envs/omero-wrapper/bin:$PATH
   id: environ_PATH
   type: string?
+- default: /tmp
+  id: environ_OMERO_TMPDIR
+  type: string?
 label: omero_wrapper_get_thresholds
 outputs:
 - id: channel_thresholds
@@ -58,5 +61,6 @@ requirements:
   ramMin: 10000
 - class: EnvVarRequirement
   envDef:
+    OMERO_TMPDIR: $(inputs.environ_OMERO_TMPDIR)
     PATH: $(inputs.environ_PATH)
 stdout: channel_thresholds.txt
