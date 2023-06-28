@@ -4,13 +4,8 @@ arguments:
 - position: 1
   valueFrom: upload
 baseCommand:
-- which
 - python
-- '&&'
-- printenv
-- '&&'
-- python
-- /omero-wrapper/omero_wrapper/omero.py
+- /omero-wrapper/omero_wrapper/omero_wrapper.py
 class: CommandLineTool
 cwlVersion: v1.0
 id: omero_wrapper_upload
