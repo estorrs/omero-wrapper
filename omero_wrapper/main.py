@@ -94,7 +94,7 @@ def upload_image():
         '-T', f'Project:name:{args.project}/Dataset:name:{args.dataset}/Image:name:{image_name}',
         '--user', username,
         '--password', password,
-        '--host', args.host,
+        '--server', args.host,
         '--port', args.port,
     ]
     command = ' '.join(pieces)
@@ -115,7 +115,7 @@ def download_image():
             'omero', 'export',
             '--user', username,
             '--password', password,
-            '--host', args.host,
+            '--server', args.host,
             '--port', args.port,
             '--file', args.filepath,
             f'Image:{args.image_id}',
@@ -125,7 +125,7 @@ def download_image():
             'omero', 'export',
             '--user', username,
             '--password', password,
-            '--host', args.host,
+            '--server', args.host,
             '--port', args.port,
             '--file', args.filepath,
             f'Project:name:{args.project}/Dataset:name:{args.dataset}/Image:name:{args.image_id}'
