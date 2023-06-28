@@ -10,11 +10,12 @@ class: CommandLineTool
 cwlVersion: v1.0
 id: omero_wrapper_download
 inputs:
-- id: filepath
+- default: output.ome.tiff
+  id: filepath
   inputBinding:
     position: '0'
     prefix: --filepath
-  type: File
+  type: string?
 - id: dataset
   inputBinding:
     position: '0'
