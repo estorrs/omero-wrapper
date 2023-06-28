@@ -20,7 +20,7 @@ parser.add_argument(
 ## general ##
 #############
 parser.add_argument(
-    '--username', type=str, required=True,
+    '--username', type=str,
     help='Omero username. If none is provided, then will use value in OMERO_USERNAME environmental variable.')
 
 parser.add_argument(
