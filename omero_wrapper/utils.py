@@ -18,3 +18,9 @@ def get_min_thresholds(conn, project=None, dataset=None, image_name=None, image_
     thresholds = [c['start'] for c in channel_metadata]
 
     return labels, thresholds
+
+
+def get_image_id(conn, project, dataset, image_name):
+    image = get_image(
+        conn, project=project, dataset=dataset, image_name=image_name)
+    return image.getId()

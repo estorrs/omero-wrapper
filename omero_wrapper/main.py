@@ -87,11 +87,12 @@ def upload_image():
     if args.filepath is None or args.dataset is None:
         raise RuntimeError('Must specify a --filepath and --dataset to upload.')
     username, password = get_login_info()
-    image_name = args.image_name.replace('.ome.tiff', '') if args.image_name is not None else args.dataset
+    image_name = args.image_name if args.image_name is not None else args.dataset
     pieces = [
         'omero', 'import',
         args.filepath,
-        '-T', f'Project:name:{args.project}/Dataset:name:{args.dataset}/Image:name:{image_name}',
+        '-T', f'Project:name:{args.project}/Dataset:name:{args.dataset}',
+        '--name', image_name,
         '--user', username,
         '--password', password,
         '--server', args.host,
@@ -111,25 +112,23 @@ def download_image():
     username, password = get_login_info()
 
     if args.image_id is not None:
-        pieces = [
-            'omero', 'export',
-            '--user', username,
-            '--password', password,
-            '--server', args.host,
-            '--port', args.port,
-            '--file', args.filepath,
-            f'Image:{args.image_id}',
-        ]
+        image_id = args.image_id
     else:
-        pieces = [
-            'omero', 'export',
-            '--user', username,
-            '--password', password,
-            '--server', args.host,
-            '--port', args.port,
-            '--file', args.filepath,
-            f'Project:name:{args.project}/Dataset:name:{args.dataset}/Image:name:{args.image_id}'
-        ]
+        conn = BlitzGateway(username, password, host=args.host, port=args.port,
+                    secure=True, group=args.group)
+        conn.connect()
+        image_id = utils.get_image_id(conn, args.project, args.dataset, args.image_name)
+        conn.close()
+    
+    pieces = [
+        'omero', 'export',
+        '--user', username,
+        '--password', password,
+        '--server', args.host,
+        '--port', args.port,
+        '--file', args.filepath,
+        f'Image:{image_id}',
+    ]
     command = ' '.join(pieces)
     logging.info('running {command}')
     outs = subprocess.check_output(command, shell=True)
