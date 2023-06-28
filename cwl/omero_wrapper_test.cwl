@@ -2,16 +2,11 @@ $namespaces:
   sbg: https://www.sevenbridges.com/
 arguments: []
 baseCommand:
-- echo
+- printenv
 class: CommandLineTool
 cwlVersion: v1.0
 id: omero_wrapper_test
 inputs:
-- default: $PATH
-  id: path
-  inputBinding:
-    position: '0'
-  type: string?
 - default: /miniconda/envs/omero-wrapper/bin:$PATH
   id: environ_PATH
   type: string?
