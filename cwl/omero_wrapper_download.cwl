@@ -56,7 +56,11 @@ inputs:
   id: environ_OMERO_TMPDIR
   type: string?
 label: omero_wrapper_download
-outputs: []
+outputs:
+- id: download_filepath
+  outputBinding:
+    glob: $(inputs.filepath)
+  type: File
 requirements:
 - class: DockerRequirement
   dockerPull: estorrs/omero-wrapper:0.0.1

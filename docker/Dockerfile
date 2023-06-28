@@ -9,14 +9,13 @@ ENV PATH="/miniconda/bin:$PATH"
 # get env file seperately so it doesn't reinstall every time
 COPY ./env.yaml /omero-wrapper/env.yaml
 RUN conda env create --file /omero-wrapper/env.yaml 
+RUN conda install -n omero-wrapper -c conda-forge openjdk -y
 
 COPY . /omero-wrapper
 
 RUN mkdir -p /omero_home
 ENV PATH="/miniconda/envs/omero-wrapper/bin:$PATH"
 ENV OMERO_USERDIR="/omero_home"
-
-RUN conda install -n omero-wrapper -c conda-forge openjdk -y
 
 RUN pip install /omero-wrapper
 
