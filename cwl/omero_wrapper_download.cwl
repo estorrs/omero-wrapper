@@ -5,7 +5,7 @@ arguments:
   valueFrom: download
 baseCommand:
 - python
-- /omero-wrapper/omero_wrapper/omero_wrapper.py
+- /omero-wrapper/omero_wrapper/main.py
 class: CommandLineTool
 cwlVersion: v1.0
 id: omero_wrapper_download
