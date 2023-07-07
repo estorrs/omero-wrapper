@@ -35,7 +35,7 @@ setup(
 
     entry_points={
         'console_scripts': [
-            'omero-wrapper=omero_wrapper.omero:main',
+            'omero-wrapper=omero_wrapper.main:main',
         ],
     },
 )
